@@ -44,6 +44,12 @@ func init() {
 		os.Exit(11)
 	}
 
+	if serverArgs.Pkg {
+		pkg := &Pkg{binPath: cfg.Module.Path}
+		pkg.Run()
+		os.Exit(0)
+	}
+
 	// init config
 	svcArgument := ""
 	cfgPath := serverArgs.Cfg
@@ -80,6 +86,9 @@ func init() {
 	}
 	if cfg.Site.Doc.Path == "" {
 		cfg.Site.Doc.Path = filepath.Join(rootFolder, "site", "doc")
+	}
+	if cfg.Site.Opt.Path == "" {
+		cfg.Site.Opt.Path = filepath.Join(rootFolder, "site", "opt")
 	}
 
 	// init service

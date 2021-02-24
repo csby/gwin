@@ -24,7 +24,7 @@ func NewConfig() *Config {
 			},
 			Http: gcfg.Http{
 				Enabled:     true,
-				Port:        8080,
+				Port:        8085,
 				BehindProxy: false,
 			},
 			Https: gcfg.Https{
@@ -45,6 +45,14 @@ func NewConfig() *Config {
 			Site: gcfg.Site{
 				Doc: gcfg.SiteDoc{
 					Enabled: true,
+				},
+				Opt: gcfg.SiteOpt{
+					Users: []gcfg.SiteOptUser{
+						{
+							"Admin",
+							"1",
+						},
+					},
 				},
 			},
 		},

@@ -30,7 +30,10 @@ func (s *Handler) BeforeRouting(ctx gtype.Context) {
 		ctx.Response().Header().Add("Access-Control-Allow-Origin", "*")
 		ctx.Response().Header().Set("Access-Control-Allow-Headers", "content-type,token")
 		ctx.SetHandled(true)
+		return
 	}
+	origin := ctx.Request().Header.Get("Origin")
+	s.LogDebug("Origin: ", origin)
 }
 
 func (s *Handler) AfterRouting(ctx gtype.Context) {
