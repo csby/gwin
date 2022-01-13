@@ -24,12 +24,12 @@ func NewConfig() *Config {
 			},
 			Http: gcfg.Http{
 				Enabled:     true,
-				Port:        8085,
+				Port:        80,
 				BehindProxy: false,
 			},
 			Https: gcfg.Https{
 				Enabled:     false,
-				Port:        8443,
+				Port:        443,
 				BehindProxy: false,
 				Cert: gcfg.Crt{
 					Ca: gcfg.CrtCa{
@@ -40,7 +40,7 @@ func NewConfig() *Config {
 						Password: "",
 					},
 				},
-				RequestClientCert: true,
+				RequestClientCert: false,
 			},
 			Site: gcfg.Site{
 				Doc: gcfg.SiteDoc{

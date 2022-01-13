@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	srcPath = "src/github.com/csby/gwsf-example"
+	srcPath = "src/github.com/csby/gdhcp"
 )
 
 var (
@@ -58,7 +58,7 @@ func (s *Pkg) Run() {
 	fmt.Println("vue folder path: ", vueFolder)
 	docFolder := filepath.Join(vueFolder, "gwsf-doc")
 	fmt.Println("doc folder path: ", docFolder)
-	optFolder := filepath.Join(vueFolder, "gwsf-opt")
+	optFolder := filepath.Join(vueFolder, "gdhcp-opt")
 	fmt.Println("opt folder path: ", optFolder)
 
 	c := &gpkg.Config{
@@ -90,7 +90,7 @@ func (s *Pkg) Run() {
 						},
 					},
 					{
-						Enable: false,
+						Enable: true,
 						Name:   "opt",
 						Src: gpkg.Source{
 							Root:   optFolder,

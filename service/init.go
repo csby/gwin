@@ -13,8 +13,8 @@ import (
 
 const (
 	moduleType    = "server"
-	moduleName    = "gwsf-svc-example"
-	moduleRemark  = "WEB服务示例"
+	moduleName    = "gdhcp"
+	moduleRemark  = "DHCP管理服务"
 	moduleVersion = "1.0.1.0"
 )
 
