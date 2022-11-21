@@ -11,8 +11,7 @@ func NewHandler(log gtype.Log) gtype.Handler {
 	instance := &Handler{}
 	instance.SetLog(log)
 
-	instance.apiController = &Controller{}
-	instance.apiController.SetLog(log)
+	instance.ctrl = &Controller{}
 
 	return instance
 }
@@ -20,18 +19,11 @@ func NewHandler(log gtype.Log) gtype.Handler {
 type Handler struct {
 	gtype.Base
 
-	apiController *Controller
+	ctrl *Controller
 }
 
 func (s *Handler) InitRouting(router gtype.Router) {
-	router.POST(apiPath.Uri("/dhcp/filter/list"), nil,
-		s.apiController.GetDhcpFilters, s.apiController.GetDhcpFiltersDoc)
-	router.POST(apiPath.Uri("/dhcp/filter/add"), nil,
-		s.apiController.AddDhcpFilter, s.apiController.AddDhcpFilterDoc)
-	router.POST(apiPath.Uri("/dhcp/filter/del"), nil,
-		s.apiController.DelDhcpFilter, s.apiController.DelDhcpFilterDoc)
-	router.POST(apiPath.Uri("/dhcp/filter/mod"), nil,
-		s.apiController.ModDhcpFilter, s.apiController.ModDhcpFilterDoc)
+	s.ctrl.InitRouting(router, apiPath)
 }
 
 func (s *Handler) BeforeRouting(ctx gtype.Context) {
@@ -62,5 +54,8 @@ func (s *Handler) AfterRouting(ctx gtype.Context) {
 }
 
 func (s *Handler) ExtendOptApi(router gtype.Router, path *gtype.Path, preHandle gtype.HttpHandle, wsc gtype.SocketChannelCollection) {
+	s.ctrl.Init(s)
 
+	router.POST(path.Uri("/setting/api"), preHandle,
+		s.ctrl.opt.GetSetting, s.ctrl.opt.GetSettingDoc)
 }

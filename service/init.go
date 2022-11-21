@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/csby/gwin/config"
 	"github.com/csby/gwsf/glog"
 	"github.com/csby/gwsf/gserver"
 	"github.com/csby/gwsf/gtype"
@@ -13,13 +14,13 @@ import (
 
 const (
 	moduleType    = "server"
-	moduleName    = "gdhcp"
-	moduleRemark  = "DHCP管理服务"
+	moduleName    = "gwin"
+	moduleRemark  = "Windows管理服务"
 	moduleVersion = "1.0.1.0"
 )
 
 var (
-	cfg              = NewConfig()
+	cfg              = config.NewConfig()
 	log              = &glog.Writer{Level: glog.LevelAll}
 	svr gtype.Server = nil
 )

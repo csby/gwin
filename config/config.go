@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"encoding/json"
@@ -13,6 +13,10 @@ import (
 type Config struct {
 	sync.RWMutex
 	gcfg.Config
+
+	Dhcp Dhcp `json:"dhcp"`
+	Dns  Dns  `json:"dns"`
+	Svn  Svn  `json:"svn"`
 }
 
 func NewConfig() *Config {
@@ -54,6 +58,18 @@ func NewConfig() *Config {
 						},
 					},
 				},
+			},
+		},
+		Dns: Dns{
+			ZoomNames: []string{},
+		},
+		Svn: Svn{
+			Ad: MsAd{
+				Host:     "127.0.0.1",
+				Port:     636,
+				Base:     "DC=example,DC=com",
+				Account:  "CN=Administrator,CN=Users,DC=example,DC=com",
+				Password: "",
 			},
 		},
 	}
